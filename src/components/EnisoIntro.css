@@ -1,0 +1,45 @@
+.eniso {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.eniso__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--carbon-2);
+}
+
+.eniso__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    rgba(10, 10, 12, 0.96) 10%,
+    rgba(10, 10, 12, 0.72) 55%,
+    rgba(226, 0, 26, 0.25) 100%
+  );
+}
+
+.eniso__content {
+  position: relative;
+  z-index: 1;
+  padding: 100px 0;
+  max-width: 640px;
+}
+
+.eniso__title {
+  font-size: clamp(32px, 4vw, 50px);
+  margin: 18px 0 20px;
+}
+
+.eniso__text {
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: var(--white);
+  opacity: 0.85;
+}

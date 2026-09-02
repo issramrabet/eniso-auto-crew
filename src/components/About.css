@@ -1,0 +1,30 @@
+.about {
+  padding: clamp(80px, 10vw, 130px) 0;
+}
+
+.about__inner {
+  max-width: 680px;
+}
+
+.about__title {
+  font-size: clamp(34px, 4.2vw, 54px);
+  margin: 20px 0 26px;
+}
+
+.about__text {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: var(--steel);
+  margin-bottom: 28px;
+}
+
+.about__link {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--red);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-red);
+  padding-bottom: 4px;
+}

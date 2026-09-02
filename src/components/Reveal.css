@@ -1,0 +1,62 @@
+.reveal {
+  padding: clamp(90px, 1vw, 50px) 0 0px;
+  text-align: center;
+}
+
+.reveal__header {
+  margin-bottom: 50px;
+}
+
+.reveal__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(34px, 5vw, 62px);
+  margin: 16px 0 10px;
+  color: var(--white);
+}
+
+.reveal__subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--steel);
+}
+
+/* The car sits free — no frame, no card background, no border. */
+.reveal__stage {
+  position: relative;
+  width: min(100%, 620px);
+  aspect-ratio: 4 / 3;
+  margin: 0 auto;
+  cursor: default;
+}
+
+.reveal__car,
+.reveal__emblem {
+  position: absolute;
+  object-fit: contain;
+  object-position: center;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.reveal__car {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.55));
+}
+
+/* Deliberately smaller than the car — sits centered behind it */
+.reveal__emblem {
+  top: 24%;
+  left: 24%;
+  width: 52%;
+  height: 52%;
+}
+
+@media (max-width: 600px) {
+  .reveal__stage {
+    width: min(100%, 420px);
+  }
+}

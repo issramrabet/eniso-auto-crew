@@ -1,0 +1,144 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  /* removed display:flex + align-items — positioning is now manual below */
+}
+
+.hero__glow {
+  position: absolute;
+  top: -25%;
+  right: -5%;
+  width: 65vw;
+  height: 65vw;
+  max-width: 800px;
+  max-height: 800px;
+  background: radial-gradient(circle, rgba(226, 0, 26, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.video-background-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero__glow,
+.hero__inner,
+.hero__scroll-cue {
+  position: relative;
+  z-index: 2;
+}
+
+/* ⬇⬇⬇ THIS IS THE BLOCK THAT MOVES THE WHOLE TEXT SECTION ⬇⬇⬇
+   top / left = exact pixel position from the top-left of the hero.
+   Change these two numbers to place it wherever you want. */
+.hero__inner {
+  position: absolute;
+  top: 400px;      /* ⬅ distance from TOP of the hero — increase = moves down */
+  left: 460px;       /* ⬅ distance from LEFT of the hero — increase = moves right */
+  max-width: 900px;  /* ⬅ how wide the whole block can get before wrapping */
+}
+
+.hero__copy {
+  max-width: 620px;  /* ⬅ width of just the text column inside hero__inner */
+}
+
+.hero__title {
+  margin: 20px 0 22px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  line-height: 0.9;
+  font-size: clamp(38px, 5.4vw, 78px);  /* ⬅ title size */
+  color: var(--white);
+  display: flex;
+  flex-wrap: wrap;
+  text-shadow: 0 12px 40px rgba(0, 0, 0, 0.7);
+}
+
+.hero__word {
+  display: inline-flex;
+  overflow: hidden;
+}
+
+.hero__word:nth-of-type(2) {
+  color: var(--red);
+}
+
+.hero__char {
+  display: inline-block;
+}
+
+.hero__subtitle {
+  max-width: 460px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--steel);
+  margin: 0 0 34px;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.65);
+}
+
+/* ⬇⬇⬇ Moves ONLY the two buttons — positioned relative to .hero__inner ⬇⬇⬇ */
+.hero__cta {
+  position: absolute;
+  top: 100px;      /* ⬅ distance from top of .hero__inner */
+  left: 120px;        /* ⬅ distance from left of .hero__inner */
+  display: flex;
+  gap: 16px;         /* ⬅ spacing between the two buttons */
+  flex-wrap: wrap;
+}
+
+.hero__scroll-cue {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 1;
+}
+
+.hero__scroll-cue span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--steel);
+}
+
+.hero__scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--red), transparent);
+  animation: scrollPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@media (max-width: 900px) {
+  .hero__inner {
+    top: 110px;
+    left: 20px;
+    right: 20px;
+    max-width: none;
+  }
+}

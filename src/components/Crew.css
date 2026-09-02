@@ -1,0 +1,206 @@
+.crew {
+  padding: clamp(80px, 10vw, 130px) 0;
+  overflow: hidden;
+}
+
+.crew__header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.crew__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 6vw, 74px);
+  margin: 18px 0 10px;
+  background: linear-gradient(120deg, var(--white), var(--red) 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.crew__subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: var(--steel);
+}
+
+.crew__carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* prev-peek | focused card | next-peek — swiping/clicking moves exactly
+   one member at a time; the index wraps so it loops like a circle. */
+.crew__stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 3vw, 28px);
+  width: min(100%, 760px);
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+}
+
+.crew__stage:active {
+  cursor: grabbing;
+}
+
+.crew__focus {
+  position: relative;
+  width: 260px;
+  height: 380px;
+  flex: 0 0 auto;
+}
+
+.crew__card {
+  position: absolute;
+  inset: 0;
+  padding: 20px;
+  border-radius: 18px;
+  border: 1px solid var(--border-red);
+  background: linear-gradient(180deg, var(--carbon-2), var(--carbon-3));
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(226, 0, 26, 0.06) inset;
+  display: flex;
+  flex-direction: column;
+}
+
+.crew__index {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  color: var(--red);
+  margin-bottom: 12px;
+}
+
+.crew__photo {
+  flex: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--carbon-3);
+  margin-bottom: 16px;
+}
+
+.crew__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.crew__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.crew__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.1;
+}
+
+.crew__role {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+/* Dimmed side previews — hint at the next/previous member and are
+   clickable shortcuts, without competing with the focused card. */
+.crew__peek {
+  flex: 0 0 auto;
+  width: 110px;
+  height: 300px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--carbon-2);
+  padding: 0;
+  cursor: pointer;
+  opacity: 0.4;
+  filter: grayscale(0.6);
+  transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
+}
+
+.crew__peek:hover {
+  opacity: 0.75;
+  filter: grayscale(0.15);
+  transform: translateY(-4px);
+}
+
+.crew__peek img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.crew__arrow {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--white);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.crew__arrow:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.crew__dots {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 30px;
+}
+
+.crew__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.crew__dot.is-active {
+  background: var(--red);
+  transform: scale(1.4);
+}
+
+@media (max-width: 720px) {
+  .crew__peek {
+    width: 64px;
+  }
+  .crew__focus {
+    width: 230px;
+    height: 340px;
+  }
+}
+
+@media (max-width: 520px) {
+  .crew__peek {
+    display: none;
+  }
+}

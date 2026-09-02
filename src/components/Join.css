@@ -1,0 +1,118 @@
+.join {
+  position: relative;
+  padding: clamp(80px, 10vw, 130px) 0;
+  overflow: hidden;
+}
+
+/* Video background, same behavior as the Hero one */
+.video-background-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.video-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Darkens the video so the form/text stay readable on top of it */
+.join__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(10, 10, 12, 0.94) 20%,
+    rgba(10, 10, 12, 0.8) 60%,
+    rgba(226, 0, 26, 0.2) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.join__inner {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(30px, 6vw, 70px);
+  align-items: start;
+}
+
+.join__title {
+  font-size: clamp(30px, 3.6vw, 44px);
+  margin: 18px 0 14px;
+}
+
+.join__text {
+  color: var(--steel);
+  font-size: 1.05rem;
+}
+
+.join__form {
+  background: var(--carbon-2);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.join__row {
+  display: flex;
+  gap: 14px;
+}
+
+.join__input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--white);
+  padding: 13px 16px;
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.join__input:focus {
+  border-color: var(--red);
+}
+
+.join__submit {
+  margin-top: 6px;
+  width: 100%;
+}
+
+.join__status {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+
+.join__status--error {
+  color: #f59e0b;
+}
+
+.join__status--ok {
+  color: #34d399;
+}
+
+@media (max-width: 780px) {
+  .join__inner {
+    grid-template-columns: 1fr;
+  }
+  .join__row {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,188 @@
+:root {
+  --carbon: #0a0a0c;
+  --carbon-2: #131316;
+  --carbon-3: #1c1c20;
+  --red: #e2001a;
+  --red-dim: #7a0010;
+  --white: #f2f2f0;
+  --steel: #8a8a90;
+  --border: rgba(242, 242, 240, 0.1);
+  --border-red: rgba(226, 0, 26, 0.4);
+
+  --font-display: 'Big Shoulders Display', sans-serif;
+  --font-body: 'Barlow', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--carbon);
+  color: var(--white);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  /* Custom car cursor — see public/images/cursors/ and README.md for exact
+     dimensions required. The "0 0" is the hotspot (the pixel that counts as
+     the actual click point) — top-left corner of the image in this case. */
+  cursor: url('/images/cursors/car-cursor.png') 0 0, auto;
+}
+
+/* Swap to a second cursor image over anything clickable. Add more selectors
+   here (e.g. input, textarea) if you want the same cursor on form fields. */
+a,
+button,
+[role='button'] {
+  cursor: url('/images/cursors/car-pointer.png') 16 16, pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--red);
+  color: var(--white);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--carbon);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--carbon-3);
+  border-radius: 8px;
+  border: 2px solid var(--red-dim);
+}
+
+/* Carbon fiber weave texture, used as a background layer */
+.carbon-texture {
+  background-color: var(--carbon);
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 5px),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 5px);
+}
+
+.sector-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sector-label::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: var(--red);
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.005em;
+  line-height: 0.95;
+  color: var(--white);
+}
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 64px);
+}
+
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  padding: 14px 30px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--red);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(226, 0, 26, 0.35);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--red);
+  color: var(--red);
+}
+
+/* Matches the crew headshot background red exactly (#ac1d21) */
+.btn-outline--crew {
+  border-color: #ac1d21;
+  color: #ac1d21;
+}
+
+.btn-outline--crew:hover {
+  background: #ac1d21;
+  border-color: #ac1d21;
+  color: var(--white);
+}
+
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
