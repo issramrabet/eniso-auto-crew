@@ -2,15 +2,15 @@ import { useRef, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import './Join.css'
 
-// Replace this with your own Formspree endpoint (see README.md, "Making the
-// forms actually send something"). Until you do, submissions will fail with
-// a clear error instead of silently pretending to work.
-const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID'
+// 1. Go to https://formspree.io and sign up with issramrabet@gmail.com
+// 2. Click "New Form", then copy its link (looks like https://formspree.io/f/abcdwxyz)
+// 3. Paste it below. Every registration will be emailed to you.
+const FORM_ENDPOINT = 'https://formspree.io/f/xkjolppj'
 
 export default function Join() {
   const videoRef = useRef(null)
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', filiere: '' })
-  const [status, setStatus] = useState('idle') // idle | sending | sent | error | config-error
+  const [status, setStatus] = useState('idle') // idle | sending | sent | invalid | error | config-error
 
   useEffect(() => {
     videoRef.current?.play().catch(() => {
@@ -24,9 +24,15 @@ export default function Join() {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    const { firstName, lastName, email, filiere } = form
-    if (!firstName.trim() || !lastName.trim() || !email.trim() || !filiere.trim()) {
-      setStatus('error')
+    const data = {
+      firstName: form.firstName.trim(),
+      lastName: form.lastName.trim(),
+      email: form.email.trim(),
+      filiere: form.filiere.trim(),
+    }
+
+    if (!data.firstName || !data.lastName || !data.email || !data.filiere) {
+      setStatus('invalid')
       return
     }
 
@@ -40,13 +46,7 @@ export default function Join() {
       const res = await fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          filiere,
-          submittedAt: new Date().toISOString(),
-        }),
+        body: JSON.stringify({ ...data, submittedAt: new Date().toISOString() }),
       })
 
       if (!res.ok) throw new Error('Request failed')
@@ -125,12 +125,17 @@ export default function Join() {
             {status === 'sending' ? 'Submitting…' : status === 'sent' ? '✓ You’re in!' : 'Join the Crew →'}
           </button>
 
-          {status === 'error' && (
+          {status === 'invalid' && (
             <span className="join__status join__status--error">Fill in all fields to continue.</span>
+          )}
+          {status === 'error' && (
+            <span className="join__status join__status--error">
+              Something went wrong. Check your connection and try again.
+            </span>
           )}
           {status === 'config-error' && (
             <span className="join__status join__status--error">
-              Form isn&rsquo;t connected yet — set FORM_ENDPOINT in Join.jsx (see README.md).
+              Form isn&rsquo;t connected yet — set FORM_ENDPOINT in Join.jsx (see the comment at the top).
             </span>
           )}
           {status === 'sent' && (
